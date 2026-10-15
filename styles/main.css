@@ -1,0 +1,175 @@
+/* 手機優先：先寫小螢幕樣式，再用 min-width 往上加 */
+:root {
+  --bg: #fff8ee;
+  --text: #1f2937;
+  --muted: #4b5563;
+  --card: #ffffff;
+  --blue: #5bb4d1;
+  --blue-deep: #1d6f8c;
+  --coral: #e8636b;
+  --coral-deep: #b8323a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "PingFang TC", "Noto Sans TC",
+               "Microsoft JhengHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 0%, #ffe3e5 0, transparent 40%),
+    radial-gradient(circle at 100% 30%, #dff3fa 0, transparent 45%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+/* 第一屏：照片是主角 */
+.hero {
+  text-align: center;
+  animation: pop-in 500ms ease-out both;
+}
+
+.avatar-frame {
+  display: inline-block;
+  padding: 0.75rem;
+  background: var(--card);
+  border: 4px solid var(--blue);
+  border-radius: 1.5rem;
+  box-shadow: 8px 8px 0 var(--coral);
+  transform: rotate(-2deg);
+  transition: transform 250ms ease;
+}
+
+.avatar-frame:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.avatar {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.name {
+  margin: 1.75rem 0 0;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  color: var(--blue-deep);
+}
+
+.role {
+  display: inline-block;
+  margin: 0.75rem 0 0;
+  padding: 0.25rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--coral-deep);
+  border-radius: 999px;
+}
+
+/* 內容卡片 */
+.card {
+  margin-top: 2rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: var(--card);
+  border: 3px solid var(--text);
+  border-radius: 1.25rem;
+  box-shadow: 6px 6px 0 var(--blue);
+  animation: pop-in 500ms ease-out both;
+  animation-delay: 150ms;
+}
+
+.card + .card {
+  animation-delay: 300ms;
+}
+
+.card-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  color: var(--coral-deep);
+}
+
+.facts {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.facts li + li {
+  margin-top: 0.25rem;
+}
+
+.mail-button {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--blue-deep);
+  border-radius: 999px;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+
+.mail-button:hover {
+  background: var(--coral-deep);
+  transform: translateY(-2px);
+}
+
+.mail-button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .card {
+    animation: none;
+  }
+
+  .avatar-frame,
+  .mail-button {
+    transition: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 4rem 2rem;
+  }
+
+  .name {
+    font-size: 3.5rem;
+  }
+}
